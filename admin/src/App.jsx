@@ -1,14 +1,27 @@
-import React from 'react'
-import Navbar from './Components/Navbar/Navbar'
-import Admin from './Pages/Admin/Admin'
+import React from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Navbar from './Components/Navbar/Navbar.jsx';
+import Admin from './Pages/Admin/Admin.jsx';
+import Login from './Pages/Login/Login.jsx';
 
 const App = () => {
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  const location = useLocation();
+
   return (
     <div>
-      <Navbar/>
-      <Admin/>
-    </div>
-  )
-}
+      {/* Show Navbar only if not on login page */}
+      {location.pathname !== "/login" && <Navbar />}
 
-export default App
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/*"
+          element={isAdmin ? <Admin /> : <Navigate to="/login" />}
+        />
+      </Routes>
+    </div>
+  );
+};
+
+export default App;

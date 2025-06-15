@@ -9,7 +9,12 @@ const ListProduct = () => {
   const backendPort = import.meta.env.VITE_BACKEND_PORT;
 
   const fetchInfo = async ()=>{
-    await fetch(`http://localhost:${backendPort}/allproducts`)
+    await fetch(`http://localhost:${backendPort}/allproducts`,{
+    headers: {
+      Authorization: import.meta.env.VITE_ADMIN_API_KEY,
+      Accept: 'application/json'
+    }
+  })
     .then((res)=>res.json())
     .then((data)=>{setAllproducts(data)});
   }
@@ -22,6 +27,7 @@ const ListProduct = () => {
     await fetch(`http://localhost:${backendPort}/removeproduct`,{
       method:'POST',
       headers:{
+        Authorization: import.meta.env.VITE_ADMIN_API_KEY,
         Accept:'application/json',
         'Content-Type':'application/json',
       },

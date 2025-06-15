@@ -6,6 +6,8 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 require('dotenv').config();
+const adminAuth = require('./middleware/adminAuth');
+
 
 app.use(express.json());
 app.use(cors());
@@ -38,7 +40,7 @@ const upload = multer({storage:storage})
 
 app.use('/images',express.static('upload/images'))
 
-app.post("/upload",upload.single('product'),(req,res)=>{
+app.post("/upload", adminAuth, upload.single('product'),(req,res)=>{
     res.json({
         success:1,
         image_url:`http://localhost:${dbPort}/images/${req.file.filename}`
@@ -82,7 +84,7 @@ const Product = mongoose.model("Product",{
     }
 })
 
-app.post('/addproduct',async (req,res)=>{
+app.post('/addproduct', adminAuth, async (req,res)=>{
     let products = await Product.find({});
     let id;
     if(products.length>0)
@@ -110,7 +112,7 @@ app.post('/addproduct',async (req,res)=>{
 
 //Creating API For Deleting Products
 
-app.post('/removeproduct',async (req,res)=>{
+app.post('/removeproduct', adminAuth, async (req,res)=>{
     await Product.findOneAndDelete({id:req.body.id});
     console.log("Removed");
     res.json({
@@ -121,7 +123,7 @@ app.post('/removeproduct',async (req,res)=>{
 
 //Creating API For Getting All Products
 
-app.get('/allproducts',async (req,res)=>{
+app.get('/allproducts', async (req,res)=>{
     let products = await Product.find({});
     console.log("All Products Fetched");
     res.send(products);
