@@ -9,7 +9,7 @@ const ListProduct = () => {
   const backendPort = import.meta.env.VITE_BACKEND_PORT;
 
   const fetchInfo = async ()=>{
-    await fetch(`http://localhost:${backendPort}/allproducts`,{
+    await fetch(`${backendPort}/allproducts`,{
     headers: {
       Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
       Accept: 'application/json'
@@ -24,7 +24,7 @@ const ListProduct = () => {
   },[])
 
   const remove_product = async (id) => {
-    await fetch(`http://localhost:${backendPort}/removeproduct`,{
+    await fetch(`${backendPort}/removeproduct`,{
       method:'POST',
       headers:{
         Authorization: `Bearer ${localStorage.getItem("adminToken")}`,

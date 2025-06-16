@@ -9,7 +9,7 @@ const Login = () => {
   const backendPort = import.meta.env.VITE_BACKEND_PORT;
 
   const handleLogin = async () => {
-    const response = await fetch(`http://localhost:${backendPort}/api/admin-login`, {
+    const response = await fetch(`${backendPort}/api/admin-login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })

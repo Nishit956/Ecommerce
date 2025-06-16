@@ -5,7 +5,7 @@ import Admin from './Pages/Admin/Admin.jsx';
 import Login from './Pages/Login/Login.jsx';
 
 const App = () => {
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+ 
   const location = useLocation();
 
   return (

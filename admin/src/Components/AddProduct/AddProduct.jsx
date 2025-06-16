@@ -31,7 +31,7 @@ const AddProduct = () => {
 
     const backendPort = import.meta.env.VITE_BACKEND_PORT;
 
-    await fetch(`http://localhost:${backendPort}/upload`,{
+    await fetch(`${backendPort}/upload`,{
       method:'POST',
       headers:{
         Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
@@ -44,7 +44,7 @@ const AddProduct = () => {
     {
       product.image = responseData.image_url;
       console.log(product);
-      await fetch(`http://localhost:${backendPort}/addproduct`,{
+      await fetch(`${backendPort}/addproduct`,{
         method:'POST',
         headers:{
           Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
