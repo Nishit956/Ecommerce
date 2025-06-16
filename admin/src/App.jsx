@@ -15,10 +15,7 @@ const App = () => {
 
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/*"
-          element={isAdmin ? <Admin /> : <Navigate to="/login" />}
-        />
+        <Route path="/*" element={ localStorage.getItem("adminToken") ? <Admin /> : <Navigate to="/login" />}/>
       </Routes>
     </div>
   );

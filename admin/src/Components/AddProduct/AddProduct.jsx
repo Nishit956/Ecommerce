@@ -34,7 +34,7 @@ const AddProduct = () => {
     await fetch(`http://localhost:${backendPort}/upload`,{
       method:'POST',
       headers:{
-        Authorization: import.meta.env.VITE_ADMIN_API_KEY,
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         Accept:'application/json',
       },
       body:formData,
@@ -47,7 +47,7 @@ const AddProduct = () => {
       await fetch(`http://localhost:${backendPort}/addproduct`,{
         method:'POST',
         headers:{
-           Authorization: import.meta.env.VITE_ADMIN_API_KEY,
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
           Accept:'application/json',
           'Content-Type':'application/json',
         },

@@ -13,6 +13,30 @@
 .nav-profile{
     width: 75px;
 }
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logout-button:hover {
+    background-color: #e04344;
+    transform: scale(1.02);
+}
+
 @media(max-width:800px){
     .navbar{
         padding: 15px 30px;
@@ -22,5 +46,13 @@
     }
     .nav-profile{
         width: 60px;
+    }
+    .nav-actions {
+        gap: 10px;
+    }
+    .logout-button {
+        padding: 8px 14px;
+        font-size: 14px;
+        border-radius: 4px;
     }
 }

@@ -11,7 +11,7 @@ const ListProduct = () => {
   const fetchInfo = async ()=>{
     await fetch(`http://localhost:${backendPort}/allproducts`,{
     headers: {
-      Authorization: import.meta.env.VITE_ADMIN_API_KEY,
+      Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
       Accept: 'application/json'
     }
   })
@@ -27,7 +27,7 @@ const ListProduct = () => {
     await fetch(`http://localhost:${backendPort}/removeproduct`,{
       method:'POST',
       headers:{
-        Authorization: import.meta.env.VITE_ADMIN_API_KEY,
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
         Accept:'application/json',
         'Content-Type':'application/json',
       },

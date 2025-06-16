@@ -7,7 +7,7 @@ const path = require("path");
 const cors = require("cors");
 require('dotenv').config();
 const adminAuth = require('./middleware/adminAuth');
-
+const adminRoutes = require('./routes/admin');
 
 app.use(express.json());
 app.use(cors());
@@ -21,6 +21,9 @@ const dbSecretKey = process.env.DB_SECRET_KEY;
 mongoose.connect(`${dbHost}`);
 
 //API Creation
+
+app.use('/api', adminRoutes);
+
 
 app.get("/",(req,res) => {
     res.send("Express App is Running")
