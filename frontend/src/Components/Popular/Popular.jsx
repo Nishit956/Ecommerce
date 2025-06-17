@@ -8,7 +8,7 @@ const Popular = () => {
   const backendPort = import.meta.env.VITE_BACKEND_PORT 
 
   useEffect(()=>{
-    fetch(`http://localhost:${backendPort}/popularinwomen`)
+    fetch(`${backendPort}/popularinwomen`)
     .then((response)=>response.json())
     .then((data)=>setPopularProducts(data));
   },[])

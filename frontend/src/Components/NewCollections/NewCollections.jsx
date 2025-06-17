@@ -8,7 +8,7 @@ const NewCollections = () => {
   const backendPort = import.meta.env.VITE_BACKEND_PORT 
 
   useEffect(()=>{
-    fetch(`http://localhost:${backendPort}/newcollections`)
+    fetch(`${backendPort}/newcollections`)
     .then((response)=>response.json())
     .then((data)=>setNew_Collections(data));
   },[])

@@ -19,7 +19,7 @@ const LoginSignup = () => {
   const login = async () => {
     console.log("Login Function Executed",formData);
     let responseData;
-    await fetch(`http://localhost:${backendPort}/login`,{
+    await fetch(`${backendPort}/login`,{
       method:'POST',
       headers:{
         Accept:'application/form-data',
@@ -40,7 +40,7 @@ const LoginSignup = () => {
   const signup = async () => {
     console.log("Signup Function Executed",formData);
     let responseData;
-    await fetch(`http://localhost:${backendPort}/signup`,{
+    await fetch(`${backendPort}/signup`,{
       method:'POST',
       headers:{
         Accept:'application/form-data',
