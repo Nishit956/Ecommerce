@@ -265,7 +265,7 @@ app.post('/getcart',fetchUser, async (req,res)=>{
 })
 
 
-const PORT = process.env.DB_PORT || 4000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, (error) => {
     if (!error) {
