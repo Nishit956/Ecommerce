@@ -16,6 +16,7 @@ app.use(cors());
 const dbHost = process.env.DB_HOST;
 const dbPort = process.env.DB_PORT;
 const dbSecretKey = process.env.DB_SECRET_KEY;
+const cloudUrl = process.env.CLOUD_BASE_URL;
 
 //Database Connection With MongoDB
 mongoose.connect(`${dbHost}`);
@@ -46,7 +47,7 @@ app.use('/images',express.static('upload/images'))
 app.post("/upload", adminAuth, upload.single('product'),(req,res)=>{
     res.json({
         success:1,
-        image_url:`http://localhost:${dbPort}/images/${req.file.filename}`
+        image_url:`${cloudUrl}/images/${req.file.filename}`
     })
 })
 
