@@ -14,7 +14,6 @@ app.use(cors());
 
 //Accessing the environmental variables
 const dbHost = process.env.DB_HOST;
-const dbPort = process.env.DB_PORT;
 const dbSecretKey = process.env.DB_SECRET_KEY;
 const cloudUrl = process.env.CLOUD_BASE_URL;
 
@@ -266,11 +265,12 @@ app.post('/getcart',fetchUser, async (req,res)=>{
 })
 
 
-app.listen(`${dbPort}`,(error)=>{
-    if(!error){
-        console.log(`Server Running on port+${dbPort}`);
+const PORT = process.env.DB_PORT || 4000;
+
+app.listen(PORT, (error) => {
+    if (!error) {
+        console.log(`Server Running on port ${PORT}`);
+    } else {
+        console.log("Error: " + error);
     }
-    else{
-        console.log("Error : "+error)
-    }
-})
+});
