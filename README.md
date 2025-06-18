@@ -7,8 +7,6 @@ This is a full-featured eCommerce web application built using the **MERN Stack**
 ## 🚀 Live Links
 
 🔗 Website: [Live Site](https://ecommerce-app-oxud.onrender.com)  
-🔐 Admin Panel: [Admin Panel](https://ecommerce-admin-panel-53pn.onrender.com)  
-🌐 API: [Backend](https://ecommerce-backend-d9d4.onrender.com)
 
 ---
 
