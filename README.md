@@ -1,4 +1,4 @@
-## 🛒URBAN-AVENUE (MERN Stack eCommerce App)
+## 🛒 URBAN-AVENUE (MERN Stack eCommerce App)
 
 URBAN-AVENUE is a full-featured eCommerce web application built using the **MERN Stack** (MongoDB, Express.js, React, Node.js). It includes user and admin authentication, cart functionality, product management, image uploading, and real-time product updates.
 
