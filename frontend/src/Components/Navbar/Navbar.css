@@ -8,7 +8,14 @@
 .nav-logo{
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 20px; 
+    margin-right: 100px;
+}
+.nav-logo img {
+  width: 50px;
+  border-radius: 10px;
+  height: auto;
+  object-fit: contain;
 }
 .nav-logo p{
     color: #171717;
