@@ -1,4 +1,5 @@
 import React ,{ createContext, useEffect, useState } from "react";
+import { toast } from 'react-toastify';
 
 export const ShopContext = createContext(null);
 
@@ -50,7 +51,14 @@ const ShopContextProvider = (props) => {
                 body:JSON.stringify({"itemId":itemId}),
             })
             .then((response)=>response.json())
-            .then((data)=>console.log(data));
+             .then((data) => {
+                console.log(data);
+                toast.success("Item added to cart");
+            })
+            .catch((error) => {
+                console.error(error);
+                toast.error("Failed to add item");
+            });
 
         }
     }
@@ -68,7 +76,14 @@ const ShopContextProvider = (props) => {
                 body:JSON.stringify({"itemId":itemId}),
             })
             .then((response)=>response.json())
-            .then((data)=>console.log(data));
+             .then((data) => {
+                console.log(data);
+                toast.info("Item removed from cart");
+            })
+            .catch((error) => {
+                console.error(error);
+                toast.error("Failed to remove item");
+            });
         }
     }
 
