@@ -1,3 +1,4 @@
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 import Navbar from './Components/Navbar/Navbar'
 import { Route, Switch } from 'wouter';
@@ -11,7 +12,7 @@ import men_banner from './Components/Assets/banner_mens.png'
 import women_banner from './Components/Assets/banner_women.png'
 import kid_banner from './Components/Assets/banner_kids.png'
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {  
   return (
