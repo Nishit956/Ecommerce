@@ -34,16 +34,7 @@ const ShopContextProvider = (props) => {
                 },
                 body:"",
             }).then((response)=>response.json())
-             .then((data) => {
-                const cleanedCart = {};
-                for (let item in data) {
-                    if (data[item] > 0) {
-                        cleanedCart[item] = data[item];
-                    }
-                }
-                console.log("Cleaned cart:", cleanedCart);
-                setCartItems(cleanedCart);
-            });
+            .then((data)=>setCartItems(data));
         }
     },[])
 
@@ -111,11 +102,14 @@ const ShopContextProvider = (props) => {
 
 
     const getTotalCartItems = () => {
-        return Object.values(cartItems).reduce((total, qty) => {
-            return qty > 0 ? total + qty : total;
-        }, 0);
+        let totalItem = 0;
+        for (const item in cartItems) {
+            if (cartItems[item] && cartItems[item] > 0) {
+                totalItem += cartItems[item];
+            }
+        }
+        return totalItem;
     };
-
 
 
     const contextValue = {getTotalCartItems,getTotalCartAmount,all_product,cartItems,addToCart,removeFromCart};
