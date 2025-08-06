@@ -34,7 +34,16 @@ const ShopContextProvider = (props) => {
                 },
                 body:"",
             }).then((response)=>response.json())
-            .then((data)=>setCartItems(data));
+             .then((data) => {
+                const cleanedCart = {};
+                for (let item in data) {
+                    if (data[item] > 0) {
+                        cleanedCart[item] = data[item];
+                    }
+                }
+                console.log("Cleaned cart:", cleanedCart);
+                setCartItems(cleanedCart);
+            });
         }
     },[])
 
