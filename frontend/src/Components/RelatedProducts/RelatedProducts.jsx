@@ -6,7 +6,7 @@ const RelatedProducts = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/allproducts`)
+    fetch(`${import.meta.env.VITE_BACKEND_PORT}/allproducts`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error('Error fetching products:', err))
