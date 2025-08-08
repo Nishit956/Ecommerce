@@ -6,8 +6,10 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 require('dotenv').config();
+
 const adminAuth = require('./middleware/adminAuth');
 const adminRoutes = require('./routes/admin');
+const upload = require('./middleware/upload');
 
 app.use(express.json());
 app.use(cors());
@@ -15,7 +17,6 @@ app.use(cors());
 //Accessing the environmental variables
 const dbHost = process.env.DB_HOST;
 const dbSecretKey = process.env.DB_SECRET_KEY;
-const cloudUrl = process.env.CLOUD_BASE_URL;
 
 //Database Connection With MongoDB
 mongoose.connect(`${dbHost}`);
@@ -29,26 +30,23 @@ app.get("/",(req,res) => {
     res.send("Express App is Running")
 })
 
-//Image Storage Engine
-const storage = multer.diskStorage({
-    destination: './upload/images',
-    filename:(req,file,cb)=>{
-        return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+
+// Upload endpoint (Cloudinary)
+app.post("/upload", adminAuth, upload.single('product'), async (req, res) => {
+  try {
+    if (!req.file || !req.file.path) {
+      return res.status(400).json({ success: 0, message: "No file uploaded" });
     }
-})
-
-const upload = multer({storage:storage})
-
-//Creating Upload Endpoint For Images
-
-app.use('/images',express.static(path.join(__dirname, 'upload/images')))
-
-app.post("/upload", adminAuth, upload.single('product'),(req,res)=>{
     res.json({
-        success:1,
-        image_url:`${cloudUrl}/images/${req.file.filename}`
-    })
-})
+      success: 1,
+      image_url: req.file.path
+    });
+  } catch (err) {
+    res.status(500).json({ success: 0, error: err.message });
+  }
+});
+
+
 
 //Schema For Creating Products
 
