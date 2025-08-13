@@ -14,6 +14,10 @@ const upload = require('./middleware/upload');
 app.use(express.json());
 app.use(cors());
 
+app.get("/ping", (req, res) => {
+    res.status(200).send("OK");
+});
+
 //Accessing the environmental variables
 const dbHost = process.env.DB_HOST;
 const dbSecretKey = process.env.DB_SECRET_KEY;
